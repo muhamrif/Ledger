@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 
 ### STS ###
+/.idea
 .apt_generated
 .classpath
 .factorypath
