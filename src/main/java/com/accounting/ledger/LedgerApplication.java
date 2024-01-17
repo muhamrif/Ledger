@@ -1,4 +1,4 @@
-package com.accounting.ledger.Ledger;
+package com.accounting.ledger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
