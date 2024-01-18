@@ -4,6 +4,7 @@ CREATE DATABASE IF NOT EXISTS ledger;
 USE ledger;
 
 CREATE TABLE IF NOT EXISTS transactions (
+ transaction_id INT AUTO_INCREMENT PRIMARY KEY,
     transaction_date DATE,
     transaction_time TIME,
     transaction_description VARCHAR(255),
