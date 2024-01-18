@@ -12,6 +12,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class Transaction {
 
+    private int id;
     private String description;
     private String vendor;
     private LocalDate date;
