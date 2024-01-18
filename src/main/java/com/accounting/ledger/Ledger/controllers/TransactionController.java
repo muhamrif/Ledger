@@ -3,17 +3,23 @@ package com.accounting.ledger.Ledger.controllers;
 import com.accounting.ledger.Ledger.data.mysql.MyTransactionDao;
 import com.accounting.ledger.Ledger.models.Transaction;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@AllArgsConstructor
 @RequestMapping("transactions")
+@CrossOrigin
 public class TransactionController {
 
-    private MyTransactionDao transactionDao;
+    private final MyTransactionDao transactionDao;
+
+    @Autowired
+    public TransactionController(MyTransactionDao transactionDao) {
+        this.transactionDao = transactionDao;
+    }
 
     // addTransaction REST API
     // http://localhost:8080/transactions
@@ -39,13 +45,16 @@ public class TransactionController {
         return new ResponseEntity<>(allTransactions, HttpStatus.OK);
     }
 
+
     // updateTransaction REST API
     // http://localhost:8080/transactions/{id}
     @PutMapping("{id}")
     public ResponseEntity<String> updateTransaction(@PathVariable("id") int transactionID,
                                                   @RequestBody Transaction transaction) {
         transactionDao.update(transactionID, transaction);
+//        System.out.println("Transaction ID: " + transaction);
         return new ResponseEntity<>("Transaction updated", HttpStatus.OK);
+
     }
 
     // deleteTransaction REST API
@@ -53,6 +62,6 @@ public class TransactionController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTransaction(@PathVariable("id") int transactionId) {
         transactionDao.delete(transactionId);
-        return new ResponseEntity<>("User successfully deleted.", HttpStatus.OK);
+        return new ResponseEntity<>("Transaction successfully deleted.", HttpStatus.OK);
     }
 }
