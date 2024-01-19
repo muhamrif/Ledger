@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Profile
-{
+public class Profile {
     private int userId;
     private String firstName = "";
     private String lastName = "";
