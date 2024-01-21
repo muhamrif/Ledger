@@ -62,6 +62,6 @@ public class TransactionController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTransaction(@PathVariable("id") int transactionId) {
         transactionDao.delete(transactionId);
-        return new ResponseEntity<>("Transaction successfully deleted.", HttpStatus.OK);
+        return new ResponseEntity<>("Transaction successfully deleted.", HttpStatus.NO_CONTENT);
     }
 }
