@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface TransactionDao {
 
-     List<Transaction> getAll();
-    Transaction getById(int id);
-    Transaction addTransaction(Transaction transaction);
-    void update(int id, Transaction transaction);
-    void delete(int id);
+     List<Transaction> getAll(int userId);
+    Transaction getById(int id, int userId);
+    Transaction addTransaction(Transaction transaction, int userId);
+    void update(int id, Transaction transaction, int userId);
+    void delete(int id, int userId);
 
 }

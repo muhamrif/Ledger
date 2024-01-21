@@ -23,13 +23,14 @@ public class MyTransactionDao extends MySqlDaoBase implements TransactionDao {
         super(dataSource);
     }
 
-    public List<Transaction> getAll(){
+    public List<Transaction> getAll(int userId){
         List<Transaction> transactions = new ArrayList<>();
 
-        String sql = "SELECT * FROM transactions";
+        String sql = "SELECT * FROM transactions WHERE user_id = ?";
 
         try (Connection connection = this.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, userId);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
@@ -44,13 +45,14 @@ public class MyTransactionDao extends MySqlDaoBase implements TransactionDao {
         return transactions;
     }
 
-    public Transaction getById(int id){
-        String query = "SELECT * FROM transactions WHERE transaction_id = ?";
+    public Transaction getById(int id, int userId){
+        String query = "SELECT * FROM transactions WHERE transaction_id = ? AND user_id = ?";
 
         try (Connection connection = this.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setInt(1, id);
+            preparedStatement.setInt(2, userId);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
@@ -63,8 +65,8 @@ public class MyTransactionDao extends MySqlDaoBase implements TransactionDao {
         return null;
     }
 
-    public Transaction addTransaction(Transaction transaction){
-        String query = "INSERT INTO transactions (transaction_description, vendor_name, transaction_date, transaction_time, amount) VALUES (?, ?, ?, ?, ?)";
+    public Transaction addTransaction(Transaction transaction, int userId){
+        String query = "INSERT INTO transactions (transaction_description, vendor_name, transaction_date, transaction_time, amount,user_id) VALUES (?, ?, ?, ?, ?,?)";
 
         try (Connection connection = this.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
@@ -73,6 +75,7 @@ public class MyTransactionDao extends MySqlDaoBase implements TransactionDao {
             preparedStatement.setDate(3, java.sql.Date.valueOf(transaction.getDate()));
             preparedStatement.setTime(4, java.sql.Time.valueOf(transaction.getTime()));
             preparedStatement.setDouble(5, transaction.getAmount());
+            preparedStatement.setInt(6, userId);
 
             preparedStatement.executeUpdate();
 
@@ -89,8 +92,8 @@ public class MyTransactionDao extends MySqlDaoBase implements TransactionDao {
         return transaction;
     }
 
-    public void update(int id, Transaction transaction){
-        String query = "UPDATE transactions SET transaction_description = ?, vendor_name = ?, transaction_date = ?, transaction_time = ?, amount = ? WHERE transaction_id = ?";
+    public void update(int id, Transaction transaction, int userId){
+        String query = "UPDATE transactions SET transaction_description = ?, vendor_name = ?, transaction_date = ?, transaction_time = ?, amount = ? WHERE transaction_id = ? AND user_id = ?";
         try (Connection connection = this.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
@@ -100,6 +103,7 @@ public class MyTransactionDao extends MySqlDaoBase implements TransactionDao {
             preparedStatement.setTime(4, java.sql.Time.valueOf(transaction.getTime()));
             preparedStatement.setDouble(5, transaction.getAmount());
             preparedStatement.setInt(6, id);
+            preparedStatement.setInt(7, userId);
 
             preparedStatement.executeUpdate();
 
@@ -108,12 +112,13 @@ public class MyTransactionDao extends MySqlDaoBase implements TransactionDao {
         }
     }
 
-    public void delete(int id){
-        String query = "DELETE FROM transactions WHERE transaction_id = ?";
+    public void delete(int id, int userId){
+        String query = "DELETE FROM transactions WHERE transaction_id = ? AND user_id = ?";
         try (Connection connection = this.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setInt(1, id);
+            preparedStatement.setInt(2, userId);
 
             preparedStatement.executeUpdate();
 
