@@ -80,7 +80,7 @@ public class AuthenticationController {
             }
 
             // create user
-            User user = userDao.create(new User(0, newUser.getUsername(), newUser.getPassword(), newUser.getRole()));
+            User user = userDao.create(new User(0, newUser.getUsername(), newUser.getPassword(), "ROLE_USER"));
 
             // create profile
             Profile profile = new Profile();
