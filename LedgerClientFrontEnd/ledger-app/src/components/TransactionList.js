@@ -185,8 +185,10 @@ const TransactionList = () => {
         </thead>
         <tbody>
           {sortedTransactions.map((transaction) => (
-            // <tr key={transaction.id}>
-            <tr key={transaction.id} style={{ background: transaction.amount <= 0 ?'#ffe5e5': '#e5ffe5'}}>
+          
+            <tr key={transaction.id}
+             style={{ background: transaction.amount <= 0 ?'#ffe5e5': '#e5ffe5'}}>
+              
                 <td>
                 <Link to={`/update-transaction/${transaction.id}`}>
                   <Button variant="outlined"
