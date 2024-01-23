@@ -65,7 +65,6 @@ const TransactionList = () => {
   };
 
   const handleFilter = () => {
-    // Apply the date filter on the frontend
     const filteredTransactions = transactions.filter((transaction) => {
       const transactionDate = new Date(transaction.date);
       const minFilterDate = minDate ? new Date(minDate) : null;
