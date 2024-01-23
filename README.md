@@ -42,17 +42,17 @@ The App is designed to help users manage their finances effectively. It provides
 - Responsive design for optimal use on various devices
 
 ## API Endpoints
-| HTTP Method | Endpoint | Description |
-| ----------- | -------- | ----------- |
-| GET | /transactions | Get all transactions |
-| GET | /transactions/{id} | Get transaction by id |
-| POST | /transactions | Add a new transaction |
-| PUT | /transactions/{id} | Update transaction by id |
-| DELETE | /transactions/{id} | Delete transaction by id |
-| POST | /login | Login user |
-| POST | /register | Register user |
-| GET | /profile | Get user profile |
-| PUT | /profile | Update user profile |
+| HTTP Method | Endpoint | Description | Body        |
+| ----------- | -------- | ----------- |-------------|
+| GET | /transactions | Get all transactions | None        |
+| GET | /transactions/{id} | Get transaction by id | None        |
+| POST | /transactions | Add a new transaction | Transaction |
+| PUT | /transactions/{id} | Update transaction by id | Transaction |
+| DELETE | /transactions/{id} | Delete transaction by id | None        |
+| POST | /login | Login user | LoginDto        |
+| POST | /register | Register user | RegisterUserDto        |
+| GET | /profile | Get user profile | None        |
+| PUT | /profile | Update user profile | Profile     |
 
 
 ## Screenshots
