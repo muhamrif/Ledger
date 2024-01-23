@@ -159,13 +159,13 @@ const TransactionList = () => {
     
         <Grid style={{ marginTop: '20px' }}>
         <Button variant='outlined' color='error' >
-          Payments:{" "} {totalPayments}
+          Payments:{" "} {totalPayments.toFixed(2)}
           </Button>
           <Button variant='outlined' color={totalDeposits+totalPayments>=0?'success':'error'} >
           Total Account Value:{" "}{(totalDeposits+totalPayments).toFixed(2)}
           </Button>
         <Button variant='outlined' color='success' >
-          Deposits:{" "}{totalDeposits}
+          Deposits:{" "}{totalDeposits.toFixed(2)}
         </Button>
         </Grid>
 
