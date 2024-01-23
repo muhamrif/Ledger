@@ -105,6 +105,7 @@ npm start
 - [@muhmarif](https://www.github.com/muhamrif)
 - [@JalesiaGriffin](https://www.github.com/JalesiaGriffin)
 - [@swilson813](https://www.github.com/swilson813)
+- [Ceren-Btmz](https://www.github.com/Ceren-Btmz)
 - [@JadeZinHarris](https://www.github.com/JadeZinHarris)
 
 
